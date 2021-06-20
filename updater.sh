@@ -9,7 +9,7 @@ git config --global user.email "$GITLAB_MAIL_ADDRESS"
 git config --global user.name "fernvenue"
 git clone git@gitlab.com:fernvenue/chn-cidr-list.git
 cd './chn-cidr-list'
-curl 'http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest' | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > ipv4.txt
+curl 'https://cdn.jsdelivr.net/gh/metowolf/iplist/data/special/china.txt' | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > ipv4.txt
 sed -i 's/[[:space:]]//g' './ipv4.txt'
 cp ./ipv4.txt ./ipv4.yaml
 sed -i "s|^|  - '&|g" ./ipv4.yaml
