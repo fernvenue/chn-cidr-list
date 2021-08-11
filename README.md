@@ -11,4 +11,4 @@ Can be used to configure IP tables or connection rules.
 
 https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt<br>
 
-The original address is still a good choices.
+The original address is still a good choice.
