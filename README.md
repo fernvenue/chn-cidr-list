@@ -7,6 +7,6 @@
 Use CI/CD to automatically check and update, each update within one week.<br>
 Can be used to configure IP tables or connection rules.
 
-https://raw.githubusercontent.com/metowolf/iplist/master/data/special/china.txt<br>
+https://github.com/gaoyifan/china-operator-ip/tree/ip-lists
 
 The original address is still a good choice.
