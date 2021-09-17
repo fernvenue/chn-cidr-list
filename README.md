@@ -4,7 +4,7 @@
 
 **Multi-format secondary distribution of China CIDR list.<br>**
 
-Use CI/CD to automatically check and update, each update within one week.<br>
+Use CI/CD to automatically check and update, each update within one day.<br>
 Can be used to configure IP tables or connection rules.
 
 https://github.com/gaoyifan/china-operator-ip/tree/ip-lists
