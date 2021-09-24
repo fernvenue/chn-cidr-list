@@ -24,7 +24,7 @@ sed -i "s|^|  - '&|g" ./ipv6.yaml
 sed -i "s|$|&'|g" ./ipv6.yaml
 sed -i "1s|^|payload:\n|" ./ipv6.yaml
 cp ./ipv6.txt ./ipv6.conf
-sed -i "s|^|IP-CIDR6,|g" ./ipv6.conf
+sed -i "s|^|IP-CIDR,|g" ./ipv6.conf
 git init
 git add .
 git commit -m 'Update CIDR list'
