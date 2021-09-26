@@ -34,6 +34,7 @@ sed -i "s|$|&'|g" ./ipv6.yaml
 sed -i "1s|^|payload:\n|" ./ipv6.yaml
 cp ./ipv6.txt ./ipv6.conf
 sed -i "s|^|IP-CIDR,|g" ./ipv6.conf
+rm cidr-merger *bgp.txt *apnic.txt
 git init
 git add .
 git commit -m 'Update CIDR list'
