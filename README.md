@@ -7,6 +7,7 @@
 Use CI/CD to automatically check and update, each update within one day.<br>
 Can be used to configure IP tables or connection rules.
 
-https://github.com/gaoyifan/china-operator-ip/tree/ip-lists
+- https://github.com/gaoyifan/china-operator-ip/tree/ip-lists
+- http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest
 
-The original address is still a good choice.
+The original addresses are still good choices.
