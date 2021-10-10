@@ -2,8 +2,8 @@ gitlab-update:
   stage: deploy
   script:
     - curl 'https://raw.githubusercontent.com/fernvenue/chn-cidr-list/master/updater.sh' -o ./gitlab-updater.sh
-    - sed -i 's|GITHUB|GITLAB|g' ./gitlab-updater.sh
-    - sed -i 's|github|gitlab|g' ./gitlab-updater.sh
+    - sed -i 's|GITHUB_|GITLAB_|g' ./gitlab-updater.sh
+    - sed -i 's|github.com|gitlab.com|g' ./gitlab-updater.sh
     - chmod +x ./gitlab-updater.sh
     - ./gitlab-updater.sh
 
