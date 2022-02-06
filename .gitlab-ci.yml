@@ -1,13 +1,6 @@
-gitlab-update:
+update:
   stage: deploy
   script:
-    - curl 'https://raw.githubusercontent.com/fernvenue/chn-cidr-list/master/gitlab_updater.sh' -o ./gitlab-updater.sh
-    - chmod +x ./gitlab-updater.sh
-    - ./gitlab-updater.sh
-
-github-update:
-  stage: deploy
-  script:
-    - curl 'https://raw.githubusercontent.com/fernvenue/chn-cidr-list/master/github_updater.sh' -o ./github-updater.sh
-    - chmod +x ./github-updater.sh
-    - ./github-updater.sh
+    - curl 'https://raw.githubusercontent.com/fernvenue/chn-cidr-list/master/updater.sh' -o ./updater.sh
+    - chmod +x ./updater.sh
+    - ./updater.sh
