@@ -4,7 +4,7 @@ echo "$SSH_PRIVATE_KEY" | tr -d "\r" | ssh-add -
 mkdir -p ~/.ssh
 chmod 700 ~/.ssh
 ssh-keyscan gitlab.com > ~/.ssh/known_hosts
-git config --global user.email "$GITLAB_MAIL_ADDRESS"
+git config --global user.email "$GIT_MAIL_ADDRESS"
 git config --global user.name "fernvenue"
 git clone git@gitlab.com:fernvenue/chn-cidr-list.git
 cd "./chn-cidr-list"
