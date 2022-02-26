@@ -35,12 +35,6 @@ cp ./ipv6.txt ./ipv6.conf
 sed -i "s|^|IP-CIDR,|g" ./ipv6.conf
 rm cidr-merger *bgp.txt *apnic.txt
 updated=`date --rfc-3339 sec`
-sed -i "1{x;p;x;}" ./ipv*
-sed -i "1i # GitHub: https://github.com/fernvenue/chn-cidr-list" ./ipv*
-sed -i "1i # GitLab: https://gitlab.com/fernvenue/chn-cidr-list" ./ipv*
-sed -i "1i # Updated: $updated" ./ipv*
-sed -i "1i # License: BSD-3-Clause License" ./ipv*
-sed -i "1i # CHN CIDR list" ./ipv*
 git init
 git add .
 git commit -m "$updated"
