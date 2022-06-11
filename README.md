@@ -7,5 +7,5 @@
 **Multi-format secondary distribution of Mainland China CIDR list.**
 
 Using [GitLab CI/CD](https://docs.gitlab.com/ee/ci/) to automatically check and update, each inspection is within **1 DAY**.  
-Main repository is at [GitLab](https://gitlab.com/fernvenue/chn-cidr-list), mirrored at [GitHub](https://github.com/fernvenue/chn-cidr-list). Support IPv4 and IPv6.  
-Source data from [BGP/ASN](https://github.com/gaoyifan/china-operator-ip/tree/ip-lists) and [APNIC](http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest).
+Both [GitLab](https://gitlab.com/fernvenue/chn-cidr-list) and [GitHub](https://github.com/fernvenue/chn-cidr-list) mirror each other, PRs and issues are welcome on either side.  
+Source data from [BGP/ASN](https://github.com/gaoyifan/china-operator-ip/tree/ip-lists) and [APNIC](http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest). Support IPv4 and IPv6.
