@@ -24,7 +24,7 @@ cp ./ipv4.txt ./ipv4.conf
 sed -i "s|^|IP-CIDR,|g" ./ipv4.conf
 curl "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt" > ipv6-bgp.txt
 sed -i "s/[[:space:]]//g" "./ipv6-bgp.txt"
-curl "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" | grep ipv6 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > ipv6-apnic.txt
+curl "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" | grep '|CN|ipv6|' | cut -d'|' -f'4,5' | tr '|' '/' > ipv6-apnic.txt
 sed -i "s/[[:space:]]//g" "./ipv6-apnic.txt"
 cat ./ipv6*.txt | ./cidr-merger -s > ./ipv6.txt
 cp ./ipv6.txt ./ipv6.yaml
