@@ -1,0 +1,33 @@
+stages:
+  - update
+
+update:
+  stage: update
+  script:
+    - git clone https://gitlab.com/$GIT_NAME/chn-cidr-list.git && cd chn-cidr-list && rm *.txt
+    - curl -s -o bgp-ipv4.list "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt"
+    - curl -s -o bgp-ipv6.list "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt"
+    - curl -s "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > apnic-ipv4.list
+    - curl -s "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" | grep "|CN|ipv6|" | cut -d"|" -f"4,5" | tr "|" "/" > apnic-ipv6.list
+    - wget `curl -s https://api.github.com/repos/zhanhb/cidr-merger/releases/latest | grep -Po '(?<=download_url\").*linux-amd64' | sed "s/^...//"`
+    - sed -i "s/[[:space:]]//g" *.list && chmod +x cidr-merger-linux-amd64
+    - cat *ipv4.list | ./cidr-merger-linux-amd64 -s > ipv4.txt
+    - cat *ipv6.list | ./cidr-merger-linux-amd64 -s > ipv6.txt
+    - cat ipv4.txt ipv6.txt > ip.txt && rm cidr-merger-linux-amd64 *.list
+    - if test -z `git status -s`; then exit 0; fi
+    - for i in *.txt; do cp $i `echo "$i" | sed "s/txt/conf/"`; done
+    - for i in *.txt; do cp $i `echo "$i" | sed "s/txt/yaml/"`; done
+    - sed -i "s|^|IP-CIDR,|g" *.conf &&  cat ipv4.txt ipv6.txt > ip.txt
+    - sed -i -e "s|^|  - '&|g" -e "s|$|&'|g" -e "1s|^|payload:\n|" *.yaml && cat ipv4.yaml ipv6.yaml > ip.yaml
+    - wget `curl -s https://api.github.com/repos/carrnot/mmdb-go/releases/latest | grep -Po '(?<=download_url\").*linux64.tar.gz' | sed "s/^...//"`
+    - tar xvf mmdb-go*.tar.gz && rm *.tar.gz *.mmdb && chmod +x mmdb-go
+    - ./mmdb-go -i ipv4.txt -o ipv4.mmdb
+    - ./mmdb-go -i ipv6.txt -o ipv6.mmdb
+    - ./mmdb-go -i ip.txt -o ip.mmdb && rm mmdb-go
+    - date=`date --rfc-3339 sec`
+    - git config --global user.email $GIT_EMAIL
+    - git config --global user.name $GIT_NAME
+    - git init
+    - git add .
+    - git commit -m "$date"
+    - git push https://gitlab-ci:$GIT_TOKEN@gitlab.com/$GIT_NAME/chn-cidr-list.git master
