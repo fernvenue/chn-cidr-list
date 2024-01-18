@@ -7,6 +7,7 @@ update:
     - git clone https://gitlab.com/$GIT_NAME/chn-cidr-list.git && cd chn-cidr-list && rm *.txt
     - curl -s -o bgp-ipv4.list "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt"
     - curl -s -o bgp-ipv6.list "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt"
+    - curl -s "http://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" > apnic.txt
     - cat apnic.txt | grep ipv4 | grep CN | awk -F\| '{ printf("%s/%d\n", $4, 32-log($5)/log(2)) }' > apnic-ipv4.list
     - cat apnic.txt | grep "|CN|ipv6|" | cut -d"|" -f"4,5" | tr "|" "/" > apnic-ipv6.list
     - rm apnic.txt
