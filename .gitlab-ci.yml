@@ -4,7 +4,7 @@ stages:
 update:
   stage: update
   script:
-    - git clone https://gitlab.com/$GIT_NAME/chn-cidr-list.git && cd chn-cidr-list && rm *.txt
+    - git clone https://gitlab.com/$GIT_NAME/chn-cidr-list.git --depth 1 && cd chn-cidr-list && rm *.txt
     - curl -s -o bgp-ipv4.list "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china.txt"
     - curl -s -o bgp-ipv6.list "https://raw.githubusercontent.com/gaoyifan/china-operator-ip/ip-lists/china6.txt"
     - curl -s "https://ftp.apnic.net/apnic/stats/apnic/delegated-apnic-latest" > apnic.txt
